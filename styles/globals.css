@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Poppins', sans-serif; 
+  overflow: hidden;
 }
 
 a {
@@ -14,3 +16,83 @@ a {
 * {
   box-sizing: border-box;
 }
+
+select{
+  padding:10px;
+  font-size:20px;
+  margin:40px 0;
+  border:none;
+  border-bottom:3px solid rgb(23, 90, 192);
+  font-family: 'Poppins', sans-ser
+}
+
+option{
+  padding:10px;
+}
+
+.san{
+  width:350px;
+  margin:0 auto;
+  margin-bottom:10px;
+  opacity:0.02;
+  top:-100px;
+  left:150px;
+  position:absolute;
+}
+
+.react-multi-carousel-track {
+  transition: all .5s ease .5s !important;
+}
+
+.logo-container{
+  width:100%;
+  height:100vh;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items: center;
+}
+
+.logo-container img{
+  width:200px;
+}
+
+/*
+li[data-index="0"] {
+  display: none;
+}
+
+li[data-index="1"] {
+  display: none;
+}
+
+/*
+.custom-right-arrow{
+  width:30px;
+  position:absolute;
+  right:1%;
+}
+
+.custom-left-arrow{
+  width:30px;
+  position: relative;
+}
+
+.arrow-cont{
+  width:60px;
+  height:100vh;
+  border-right:1px solid rgb(20,20,20);
+  position: absolute;
+  left:0;
+  top:0;
+}
+
+.arrow-cont-right{
+  width:60px;
+  height:100vh;
+  border-left:1px solid rgb(20,20,20);
+  position: absolute;
+  right: 0;
+  top:0;
+}
+*/

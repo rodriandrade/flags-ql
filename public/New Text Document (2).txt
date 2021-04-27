@@ -1,0 +1,79 @@
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import React,{useState, useEffect} from 'react'
+import Content from '../Content'
+import {LeftArrowContainer, RightArrowContainer, Arrow} from './styled'
+import { Continents } from '../Tabs/styled';
+
+const CarouselSlider = props =>{
+
+  const [countries, setCountries] = useState(props.data)
+  const [singleFlagSelected, setSingleFlagSelected] = useState(false)
+  const [continents, setContinents] = useState(props.continents)
+
+  useEffect(() => {
+    setCountries(props.data)
+    setContinents(props.continents)
+  }, [props.data])
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
+
+  const CustomLeftArrow = ({ onClick }) => {
+    return <LeftArrowContainer><Arrow className="custom-left-arrow" src="/left-arrow.svg" onClick={() => onClick()}/></LeftArrowContainer>
+  };
+
+  const CustomRightArrow = ({ onClick }) => {
+    return <RightArrowContainer><Arrow className="custom-right-arrow" src="/right-arrow.svg" onClick={() => onClick()}/></RightArrowContainer>
+  };
+
+    return (
+      <Carousel
+        customRightArrow={<CustomRightArrow />}
+        customLeftArrow={<CustomLeftArrow />}
+        swipeable={false}
+        draggable={false}
+        responsive={responsive}
+        infinite={true}
+        customTransition="all .5"
+        transitionDuration={1000}
+        containerClass="carousel-container"
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+        itemClass="carousel-item-padding-40-px"
+      >
+
+        {continents.map(continent => <Content countries={countries[continent.slug]} continent={continent.name} singleFlagSelected={singleFlagSelected} setSingleFlagSelected={setSingleFlagSelected}/>)}
+
+        {/*
+        {!singleFlagSelected ?
+        <>
+          <Content countries={countries} continent={props.continent} singleFlagSelected={singleFlagSelected} setSingleFlagSelected={setSingleFlagSelected} />
+        </>
+        
+        :
+          countries.map((country, index) => <Content flag={country} flagSingle={true} countries={countries} continent={props.continent} singleFlagSelected={singleFlagSelected} setSingleFlagSelected={setSingleFlagSelected}/>)
+        }
+      */}
+      </Carousel>
+    )
+
+  }
+
+export default CarouselSlider

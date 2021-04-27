@@ -18,40 +18,19 @@ export default function Home(props) {
   const [selectedContinent, setSelectedContinent] = useState('All countries')
   const [start, setStart] = useState(false)
 
-  const [showCarousel, setShowCarousel] = useState(false)
-  const [currentFlag, setCurrentFlag] = useState('')
-  const [flagsForCarousel, setFlagsForCarousel] = useState('')
-  const [slideChange, setSlideChange] = useState(false)
-
-  useEffect(() => {
-    if(currentFlag){
-      const countryIndex = countries.findIndex(country =>{
-        if(country.name === currentFlag.name){
-          return country
-        }
-      })
-      let newFlagsOrder = [];
-      const lastItems = countries.filter((country, index) =>{
-        return index >= countryIndex
-      })
-      const firstItems = countries.filter((country, index) =>{
-        return index < countryIndex
-      })
-      newFlagsOrder = [...lastItems, ...firstItems]
-      setFlagsForCarousel(newFlagsOrder)
-    }
-  }, [currentFlag])
-
-  useEffect(() => {
-    if(flagsForCarousel){
-      console.log(flagsForCarousel)
-    }
-  }, [flagsForCarousel])
+  const [countriesByContinent, setCountriesByContinent] = useState({
+    africa: "",
+    asia: "",
+    europe: "",
+    north_america: "",
+    oceania: "",
+    south_america: ""
+  })
 
   useEffect(()=>{
     setTimeout(()=>{
       setStart(true)
-     },3000)
+     },2000)
   },[])
  
   // Effect to fetch continents
@@ -66,10 +45,50 @@ export default function Home(props) {
   // Effect to fetch countries
   useEffect(() => {
     const getCountries = async () =>{
+      const getAfrica = await axios.get('/api/getCountriesByContinent', {
+        params: {
+          'continent': 'Africa'
+        }
+      });
+      const getAsia = await axios.get('/api/getCountriesByContinent', {
+        params: {
+          'continent': 'Asia'
+        }
+      });
+      const getEurope = await axios.get('/api/getCountriesByContinent', {
+        params: {
+          'continent': 'Europe'
+        }
+      });
+      const getNorthAmerica = await axios.get('/api/getCountriesByContinent', {
+        params: {
+          'continent': 'North America'
+        }
+      });
+      const getOceania = await axios.get('/api/getCountriesByContinent', {
+        params: {
+          'continent': 'Oceania'
+        }
+      });
+      const getSouthAmerica = await axios.get('/api/getCountriesByContinent', {
+        params: {
+          'continent': 'South America'
+        }
+      });
+      setCountriesByContinent({
+        africa: getAfrica.data.continent.countries,
+        asia: getAsia.data.continent.countries,
+        europe: getEurope.data.continent.countries,
+        north_america: getNorthAmerica.data.continent.countries,
+        oceania: getOceania.data.continent.countries,
+        south_america: getSouthAmerica.data.continent.countries,
+      })
+      
+      /*
       if(selectedContinent){
         const continent = selectedContinent;
+        console.log(continent)
         if(continent !== "All countries"){
-          setCountries('')
           const getFlags = await axios.get('/api/getCountriesByContinent', {
             params: {
               'continent': continent
@@ -77,18 +96,19 @@ export default function Home(props) {
           });
           setCountries(getFlags.data.continent.countries)
         } else{
-          setCountries('')
           const getFlags = await axios.get('/api/getAllCountries')
           setCountries(getFlags.data.countries)
         }
       }
+      */
+     /*
+     {start && <Tabs isTop={true} data={continents} setSelectedContinent={setSelectedContinent} selectedContinent={selectedContinent} />}
+       {/* {start && <CarouselSlider data={countries} continent={selectedContinent}/>} 
+       {start && <Tabs isTop={false} data={continents} /> }
+       */
     }
     getCountries();
   }, [selectedContinent])
-
-  /*
-  {start && <CarouselSlider data={countries} continent={selectedContinent}/>}
-  */
   
   return (
     <div>
@@ -97,21 +117,9 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-    {start && <Tabs isTop={true} data={continents} setSelectedContinent={setSelectedContinent} selectedContinent={selectedContinent} showCarousel={showCarousel} setShowCarousel={setShowCarousel}/> }
-
-      {!start ?
-        <div className="logo-container">
-          <img src="/logo.gif" alt="logo" />
-        </div>
-      : null}
-
-      {!showCarousel ? 
-        start && <Content countries={countries} continent={selectedContinent} showCarousel={showCarousel} setShowCarousel={setShowCarousel} currentFlag={currentFlag} setCurrentFlag={setCurrentFlag} />
-      :
-        start && <CarouselSlider countries={countries} continent={selectedContinent} showCarousel={showCarousel} setShowCarousel={setShowCarousel} currentFlag={currentFlag} setCurrentFlag={setCurrentFlag} flagsToShow={flagsForCarousel} slideChange={slideChange} setSlideChange={setSlideChange} />
-      }
-
-      {start && <Tabs isTop={false} data={continents} /> }
+        {start && <Tabs isTop={true} data={continents} setSelectedContinent={setSelectedContinent} selectedContinent={selectedContinent} />}
+        {start && <CarouselSlider data={countriesByContinent} continents={continents} continent={selectedContinent}/>} 
+        {start && <Tabs isTop={false} data={continents} /> }
     
     </div>
   )
