@@ -20,6 +20,10 @@ const LeftArrowContainer = styled.div`
     :hover{
         background-color:rgb(240,240,240);
     }
+
+    @media (min-width: 1400px) {
+        height:90.5vh;
+    }
 `
 
 const RightArrowContainer = styled.div`
@@ -36,6 +40,10 @@ const RightArrowContainer = styled.div`
     
     :hover{
         background-color:rgb(240,240,240);
+    }
+
+    @media (min-width: 1400px) {
+        height:90.5vh;
     }
     
 `

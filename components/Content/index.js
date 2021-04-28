@@ -3,6 +3,7 @@ import {RightPanel, LeftPanel, LeftArrowContainer, RightArrowContainer, Arrow, C
 import FlagCard from '../FlagCard'
 import React, {useState, useEffect} from 'react'
 import { motion } from "framer-motion"
+import { useMediaQuery } from 'react-responsive'
 
 const Content = props =>{
 
@@ -10,7 +11,10 @@ const Content = props =>{
     const continent = props.continent;
     const [flagSingle, setFlagSingle] = useState(props.flagSingle)
     const [selectedFlag, setSelectedFlag] = useState('')
-    const [test, setTest] = useState('')
+
+    const isDesktopOrLaptop = useMediaQuery({
+        query: '(min-device-width: 1400px)'
+    })
 
     useEffect(() => {
       if(selectedFlag){
@@ -34,16 +38,24 @@ const Content = props =>{
         setFlagSingle(props.flagSingle)
     }, [props.flagSingle])
 
-    if (typeof window !== "undefined") {
-        let select = document.querySelectorAll('.react-multi-carousel-item')
-      }
+    const variants = {
+        desktop_standard: { height: ["0vh", "86vh"] },
+        desktop_large: { height: ["0vh", "90.5vh"] },
+    }
     
     return(
         <Container>
-            <LeftArrowContainer animate={props.showCarousel ? "" : { height: ["0vh", "86vh"] }} transition={props.showCarousel ? "" : { duration: 2 }} behauvior={props.showCarousel}>
-                {/*<Arrow src="/left-arrow.svg" />*/}
-                <span>FlagsQL</span>
-            </LeftArrowContainer>
+            {isDesktopOrLaptop ?
+                <LeftArrowContainer animate={props.showCarousel ? "" : { height: ["0vh", "90.5vh"] }} transition={props.showCarousel ? "" : { duration: 2 }} behauvior={props.showCarousel}>
+                    {/*<Arrow src="/left-arrow.svg" />*/}
+                    <span>FlagsQL</span>
+                </LeftArrowContainer>
+            : 
+                <LeftArrowContainer animate={props.showCarousel ? "" : { height: ["0vh", "86vh"] }} transition={props.showCarousel ? "" : { duration: 2 }} behauvior={props.showCarousel}>
+                    {/*<Arrow src="/left-arrow.svg" />*/}
+                    <span>FlagsQL</span>
+                </LeftArrowContainer>
+            }
             <LeftPanel>
             {!flagSingle ?
                 <TextContainer animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
@@ -84,10 +96,17 @@ const Content = props =>{
                 </>
                 }
             </RightPanel>
-            <RightArrowContainer animate={{ height: ["0vh", "86vh"] }} transition={{ duration: 2 }}>
-                {/*<Arrow src="/right-arrow.svg" />*/}
-                <span>FlagsQL</span>
-            </RightArrowContainer>
+            {isDesktopOrLaptop ?
+                <RightArrowContainer animate={{ height: ["0vh", "90.5vh"] }} transition={{ duration: 2 }}>
+                    {/*<Arrow src="/right-arrow.svg" />*/}
+                    <span>FlagsQL</span>
+                </RightArrowContainer>
+            :
+                <RightArrowContainer animate={{ height: ["0vh", "86vh"] }} transition={{ duration: 2 }}>
+                    {/*<Arrow src="/right-arrow.svg" />*/}
+                    <span>FlagsQL</span>
+                </RightArrowContainer>
+            }
         </Container>
     )
 }

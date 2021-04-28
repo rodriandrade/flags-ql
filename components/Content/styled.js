@@ -31,6 +31,19 @@ const LeftPanel = styled(motion.div)`
             height: 86vh;
         }
     }
+
+    @media (min-width: 1400px) {
+        height:90.5vh;
+
+        @keyframes draw-line{
+        0% {
+           height:1vh;
+        }
+        100% {
+            height: 90.5vh;
+        }
+    }
+    }
 `
 
 const RightPanel = styled.div`
@@ -50,6 +63,10 @@ const RightPanel = styled.div`
     ::-webkit-scrollbar {
         display: none;
     }
+
+    @media (min-width: 1400px) {
+        height:90.5vh;
+    }
 `
 
 const LeftArrowContainer = styled(motion.div)`
@@ -65,6 +82,10 @@ const LeftArrowContainer = styled(motion.div)`
         transform:rotate(270deg);
         font-size:20px;
         color:rgb(150,150,150);
+    }
+
+    @media (min-width: 1400px) {
+        height:${(props) => (props.behauvior ? "90.5vh" : "0vh")};
     }
 /*
     ::after {
