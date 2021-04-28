@@ -47,12 +47,10 @@ const Content = props =>{
         <Container>
             {isDesktopOrLaptop ?
                 <LeftArrowContainer animate={props.showCarousel ? "" : { height: ["0vh", "90.5vh"] }} transition={props.showCarousel ? "" : { duration: 2 }} behauvior={props.showCarousel}>
-                    {/*<Arrow src="/left-arrow.svg" />*/}
                     <span>FlagsQL</span>
                 </LeftArrowContainer>
             : 
                 <LeftArrowContainer animate={props.showCarousel ? "" : { height: ["0vh", "86vh"] }} transition={props.showCarousel ? "" : { duration: 2 }} behauvior={props.showCarousel}>
-                    {/*<Arrow src="/left-arrow.svg" />*/}
                     <span>FlagsQL</span>
                 </LeftArrowContainer>
             }
@@ -98,12 +96,10 @@ const Content = props =>{
             </RightPanel>
             {isDesktopOrLaptop ?
                 <RightArrowContainer animate={{ height: ["0vh", "90.5vh"] }} transition={{ duration: 2 }}>
-                    {/*<Arrow src="/right-arrow.svg" />*/}
                     <span>FlagsQL</span>
                 </RightArrowContainer>
             :
                 <RightArrowContainer animate={{ height: ["0vh", "86vh"] }} transition={{ duration: 2 }}>
-                    {/*<Arrow src="/right-arrow.svg" />*/}
                     <span>FlagsQL</span>
                 </RightArrowContainer>
             }
