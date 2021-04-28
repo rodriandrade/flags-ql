@@ -11,6 +11,10 @@ const FlagImage = styled.img`
     width:${(props) => (props.size ? "300px" : "100px")};
     position:relative;
     top:${(props) => (props.size ? "-20px" : "")};
+
+    @media (min-width: 1400px) {
+        width:${(props) => (props.size ? "400px" : "100px")};
+    }
 `
 
 const Container = styled(motion.div)`

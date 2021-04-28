@@ -8,6 +8,10 @@ const GridContainer = styled(motion.div)`
     grid-row-gap: ${props => props.rowGap || 0}px;
     width:100%;
     justify-items:center;
+
+    @media (min-width: 1400px) {
+        grid-template-columns:repeat(16, 1fr);
+    }
     
     //justify-items: center;
     @media (max-width: 480px) {
