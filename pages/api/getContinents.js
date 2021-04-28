@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { gql } from "@apollo/client";
-import client from "../apollo-client"
+import client from '../../components/apollo-client'
 
 export default async (req, res) => {
   if(req.method === "GET"){

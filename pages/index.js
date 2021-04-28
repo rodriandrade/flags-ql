@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { gql } from "@apollo/client";
-import client from "./apollo-client"
+import client from "../components/apollo-client"
 import React,{useState, useEffect} from 'react'
 import axios from 'axios'
 import FlagCard from '../components/FlagCard'
