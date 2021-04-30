@@ -15,6 +15,7 @@ const FlagImage = styled.img`
     @media (min-width: 1400px) {
         width:${(props) => (props.size ? "400px" : "100px")};
     }
+
 `
 
 const Container = styled(motion.div)`
@@ -37,6 +38,12 @@ const Container = styled(motion.div)`
     :hover{
         background-color:${(props) => (props.size ? "" : "rgb(245,245,245)")};
     }
+
+/*
+    @media (max-width: 480px) { 
+        height:${(props) => (props.order ? "0" : "100vh")};
+    }
+*/
 `
 
 

@@ -66,7 +66,7 @@ const CarouselSlider = props =>{
         removeArrowOnDeviceType={["tablet", "mobile"]}
         itemClass="carousel-item-padding-40-px"
       >
-        {props.flagsToShow && props.flagsToShow.map((country, index) => <Content flag={country} flagSingle={true} countries={countries} continent={props.continent} singleFlagSelected={singleFlagSelected} setSingleFlagSelected={setSingleFlagSelected} showCarousel={props.showCarousel} setShowCarousel={props.setShowCarousel}/>)}
+        {props.flagsToShow && props.flagsToShow.map((country, index) => <Content flag={country} flagSingle={true} countries={countries} continent={props.continent} singleFlagSelected={singleFlagSelected} setSingleFlagSelected={setSingleFlagSelected} showCarousel={props.showCarousel} setShowCarousel={props.setShowCarousel} order="reverse"/>)}
       </Carousel>
     )
 

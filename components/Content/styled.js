@@ -8,7 +8,6 @@ const LeftPanel = styled(motion.div)`
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    /*border-right:1px solid rgb(20,20,20);*/
     position:relative;
 
     ::after {
@@ -36,29 +35,36 @@ const LeftPanel = styled(motion.div)`
         height:90.5vh;
 
         @keyframes draw-line{
-        0% {
-           height:1vh;
-        }
-        100% {
-            height: 90.5vh;
+            0% {
+                height:1vh;
+            }
+            100% {
+                height: 90.5vh;
+            }
         }
     }
+
+    @media (max-width: 480px) {
+        width:100%;
+        height:auto;
+        margin: 20px 0 40px 0;
+        order:${(props) => (props.order ? "2" : "1")};
+
+        ::after {
+            content: " ";
+            display: none;
+        }
     }
 `
 
 const RightPanel = styled.div`
     width:50%;
     height:86vh;
-   // border-left:1px solid rgb(20,20,20);
     overflow-y:scroll;
     margin:0 auto;
     display:flex;
     flex-direction:column;
     position:relative;
-    /*
-    justify-content:center;
-    align-items:center;
-    */
 
     ::-webkit-scrollbar {
         display: none;
@@ -66,6 +72,20 @@ const RightPanel = styled.div`
 
     @media (min-width: 1400px) {
         height:90.5vh;
+    }
+
+    @media (max-width: 480px) {
+        width:100%;
+        padding-bottom:150px;
+        height:auto;
+        order:${(props) => (props.order ? "1" : "2")};
+        overflow-y:${(props) => (props.order ? "" : "scroll")};
+
+
+        ::after {
+            content: " ";
+            display: none;
+        }
     }
 `
 
@@ -87,31 +107,10 @@ const LeftArrowContainer = styled(motion.div)`
     @media (min-width: 1400px) {
         height:${(props) => (props.behauvior ? "90.5vh" : "0vh")};
     }
-/*
-    ::after {
-        content: " ";
-        display: block;
-        width: 1px;
-        height: 1vh;
-        background: rgb(10,10,10);
-        position:absolute;
-        top:0;
-        left:50px;
-        animation:blink-text 1s ease;
-    }
 
-    @keyframes blink-text{
-        0% {
-           height:0vh;
-        }
-        50% {
-           height:50vh;
-        }
-        100% {
-            height: 86vh;
-        }
+    @media (max-width: 480px) {
+        display:none;
     }
-    */
 `
 
 const RightArrowContainer = styled(motion.div)`
@@ -130,6 +129,10 @@ const RightArrowContainer = styled(motion.div)`
         font-size:20px;
         color:rgb(150,150,150);
     }
+
+    @media (max-width: 480px) {
+        display:none;
+    }
 `
 
 const Container = styled.div`
@@ -139,6 +142,10 @@ const Container = styled.div`
     flex-direction:row;
     margin:0 auto;
     margin:0;
+
+    @media (max-width: 480px) {
+        flex-direction:column;
+    }
 `
 
 const TextContainer = styled(motion.div)`
@@ -148,6 +155,21 @@ const TextContainer = styled(motion.div)`
     padding:0 60px;
     position:relative;
     opacity:0;
+
+    @media (max-width: 480px) { 
+        padding:0 20px;
+
+        ::after {
+            content: " ";
+            display: ${(props) => (props.order ? "none" : "block")};
+            height:5px;
+            width:20%;
+            background-color:rgb(20,20,20);
+            margin:0 auto;
+            position:relative;
+            top:10px;
+        }
+    }
 `
 
 const ContinentTitle = styled.h1`
@@ -160,21 +182,9 @@ const ContinentTitle = styled.h1`
     line-height:62px;
     margin-bottom:5px;
 
-    /*
-    ::after{
-        content:'';
-        height:20px;
-        background-color:yellow;
-        opacity:0.3;
-        position:absolute;
-        width:300px;
-        margin:0 auto;
-        left:50%;
-        top:80px;
-        transform:translate(-50%, -50%);
-        display:block;
+    @media (max-width: 480px) {        
+        font-size:34px;
     }
-    */
 `
 
 const Subtitle = styled.h4`

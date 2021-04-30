@@ -37,11 +37,6 @@ const Content = props =>{
     useEffect(() => {
         setFlagSingle(props.flagSingle)
     }, [props.flagSingle])
-
-    const variants = {
-        desktop_standard: { height: ["0vh", "86vh"] },
-        desktop_large: { height: ["0vh", "90.5vh"] },
-    }
     
     return(
         <Container>
@@ -54,7 +49,7 @@ const Content = props =>{
                     <span>FlagsQL</span>
                 </LeftArrowContainer>
             }
-            <LeftPanel>
+            <LeftPanel order={props.order}>
             {!flagSingle ?
                 <TextContainer animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
                     <Subtitle>Flags of</Subtitle>
@@ -62,7 +57,7 @@ const Content = props =>{
                 </TextContainer>
             : 
                 <>
-                <TextContainer animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+                <TextContainer animate={{ opacity: 1 }} transition={{ duration: 0.5 }} order={props.order}>
                     <Map src="/germany.svg" />
                     <ContinentTitle>{props.flag ? props.flag.name : selectedFlag.name}</ContinentTitle>
                     <Description>{props.flag ? props.flag.flag_info : selectedFlag.flag_info}</Description>
@@ -77,7 +72,7 @@ const Content = props =>{
                 </>
             }
             </LeftPanel>
-            <RightPanel>
+            <RightPanel order={props.order}>
                 {flagSingle && 
                     <BackContainer onClick={handleBackButton} whileHover={{ translateX: -3 }}>
                         <BackIcon src="/back.svg" alt="back_arrow" />
@@ -90,7 +85,7 @@ const Content = props =>{
                     </Grid>
                 : 
                 <>
-                    <FlagCard flag={selectedFlag} flagSingle={flagSingle} setFlagSingle={setFlagSingle} setSelectedFlag={setSelectedFlag} other={props.flag} showCarousel={props.showCarousel} setShowCarousel={props.setShowCarousel} countries={countries} currentFlag={props.currentFlag} setCurrentFlag={props.setCurrentFlag} animate={{ opacity: 1 }} transition={{ duration: 0.1 }} />
+                    <FlagCard flag={selectedFlag} flagSingle={flagSingle} setFlagSingle={setFlagSingle} setSelectedFlag={setSelectedFlag} other={props.flag} showCarousel={props.showCarousel} setShowCarousel={props.setShowCarousel} countries={countries} currentFlag={props.currentFlag} setCurrentFlag={props.setCurrentFlag} animate={{ opacity: 1 }} transition={{ duration: 0.1 }} order={props.order} />
                 </>
                 }
             </RightPanel>
