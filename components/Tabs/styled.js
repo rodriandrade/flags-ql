@@ -42,10 +42,6 @@ const Continents = styled.a`
         top:23px;
         right:-10px;
     }
-
-    @media (max-width: 480px) {
-        padding:2px;
-    }
 `
 
 const Container = styled.div`
@@ -92,19 +88,6 @@ const Container = styled.div`
         }
         100% {
             width: 100%;
-        }
-    }
-
-    @media (max-width: 480px) {
-        overflow-x: scroll;
-        display:none;
-
-        span{
-            font-size:13px;
-        }
-
-        ::-webkit-scrollbar {
-            display: none;
         }
     }
 `

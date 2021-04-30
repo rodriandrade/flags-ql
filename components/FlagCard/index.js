@@ -22,8 +22,8 @@ const FlagCard = props =>{
             </Col>
         :
 
-            <Container size="large" animate={{ opacity: 1 }} transition={{ duration: 0.1 }} order={props.order}>
-                <FlagImage src={props.other ? props.other.flag : props.flag.flag} alt={props.other ? props.other.name : props.flag.name} size="large" order={props.order} />
+            <Container size="large" animate={{ opacity: 1 }} transition={{ duration: 0.1 }}>
+                <FlagImage src={props.other ? props.other.flag : props.flag.flag} alt={props.other ? props.other.name : props.flag.name} size="large" />
             </Container>
  
         }
